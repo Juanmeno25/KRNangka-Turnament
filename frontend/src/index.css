@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Token warna. Format "R G B" supaya bisa dipakai dengan opacity (bg-brand/15). */
+:root {
+  color-scheme: light;
+  --bg: 244 247 241;
+  --surface: 255 255 255;
+  --surface-2: 232 239 229;
+  --ink: 20 38 29;
+  --muted: 77 99 87;
+  --line: 212 223 209;
+  --brand: 31 111 74;
+  --brand-ink: 255 255 255;
+  --accent: 242 199 68;
+  --accent-ink: 20 38 29;
+  --hero: 20 38 29;
+  --danger: 180 35 24;
+  --danger-ink: 255 255 255;
+}
+.dark {
+  color-scheme: dark;
+  --bg: 11 22 17;
+  --surface: 20 36 28;
+  --surface-2: 30 50 40;
+  --ink: 232 240 234;
+  --muted: 160 181 168;
+  --line: 40 63 51;
+  --brand: 74 201 140;
+  --brand-ink: 8 28 18;
+  --accent: 242 199 68;
+  --accent-ink: 20 38 29;
+  --hero: 7 16 12;
+  --danger: 248 113 113;
+  --danger-ink: 40 10 10;
+}
+
+@layer base {
+  body { @apply bg-bg font-sans text-ink antialiased transition-colors duration-200; }
+}
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:translate-y-px disabled:opacity-50; }
+  .btn-p { @apply btn bg-brand text-brand-ink hover:brightness-110; }
+  .btn-o { @apply btn border bg-surface text-ink hover:bg-surface-2; }
+  .btn-y { @apply btn bg-accent text-accent-ink hover:brightness-95; }
+  .btn-s { @apply px-3 py-1.5 text-sm; }
+  .input { @apply w-full rounded-lg border bg-surface px-3 py-2.5 text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30; }
+  .label { @apply mb-1 block text-sm font-semibold; }
+  .skeleton { @apply animate-pulse rounded-2xl bg-surface-2 motion-reduce:animate-none; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero-in { animation: rise .7s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .hero-in { animation: none; } body { transition: none; } }
